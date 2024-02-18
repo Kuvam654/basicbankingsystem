@@ -6,9 +6,16 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Welcome, {{ user.username }}!</h1>
-    <p>Email: {{ user.email }}</p>
-    <p>Phone Number: {{ user.phonenumber }}</p>
-    <a href="{{ url_for('logout') }}">Logout</a>
+    {% if user %}
+        <h1>Welcome, {{ user[0] }}!</h1>
+        {% if user[1] %}
+            <p>Phone Number: {{ user[1] }}</p>
+        {% else %}
+            <p>Phone Number: N/A</p>
+        {% endif %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+        <p>User not found or not logged in.</p>
+    {% endif %}
 </body>
 </html>
